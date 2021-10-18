@@ -193,3 +193,40 @@ for key, value in users.copy().items():
 
 print("\n------------------------")
 ```
+
+## 函数
+
+> range()
+```
+for i in range(10):
+    print(i, end=" ")
+
+print("\n-----------------------")
+
+for i in range(5, 10):
+    print(i, end=" ") # 5 6 7 8 9 包前不包后原则
+
+print("\n-----------------------")
+
+print(list(range(0, 10, 3))) # 0 3 6 9 从0到10中获取数值，并且每次都会加3
+
+print("\n-----------------------")
+
+print(list(range(-10, -100, -30))) # [-10, -40, -70]
+```
+
+> len()
+```
+let(arr)
+```
+
+## 语句
+
+> pass
+
+可用于语法需要时但是是一个空的字段，如下创建一个最简单的类
+
+```
+class MyEmptyClass:
+    pass
+```
