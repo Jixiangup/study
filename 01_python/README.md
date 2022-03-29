@@ -7,7 +7,7 @@
 
 ## HelloWorld
 
-```
+```python
 flag = False
 if flag: 
     print("Hello Python!!!")
@@ -21,7 +21,7 @@ else:
 
 如果不使用默认编码，则要声明文件的编码，文件的 第一 行要写成特殊注释。句法如下：
 
-```
+```python
 # -*- coding: encoding -*-
 ```
 
@@ -29,13 +29,13 @@ else:
 
 比如，声明使用 Windows-1252 编码，源码文件要写成：
 
-```
+```python
 # -*- coding: cp1252 -*-
 ```
 
 第一行 的规则也有一种例外情况，源码以 [UNIX "shebang"](https://docs.python.org/zh-cn/3/tutorial/appendix.html#tut-scripts) 行 开头。此时，编码声明要写在文件的第二行。例如：
 
-```
+```python
 #!/usr/bin/env python3
 # -*- coding: cp1252 -*-
 ```
@@ -46,7 +46,7 @@ else:
 
 使用除法时会自动转换为`float`且会保留小数, 可称为`精准运算`
 
-```
+```python
 5 / 2
 # 结果为2.5
 ```
@@ -55,7 +55,7 @@ else:
 
 使用整除法时会自动转换为`int`并且会忽略后面的小数
 
-```
+```python
 5 // 2
 # 结果为2
 ```
@@ -64,7 +64,7 @@ else:
 
 当字符串与数字使用乘法运算时, 会对字符串倍数打印
 
-```
+```python
 3 * "大家好!"
 # 大家好!大家好!大家好!
 ```
@@ -73,7 +73,7 @@ else:
 
 使用乘方时会计算该数的乘方
 
-```
+```python
 2 ** 7
 # 128
 ```
@@ -84,7 +84,7 @@ else:
 
 字符串字面值可以实现跨行连续输入。实现方式是用三引号："""...""" 或 '''...'''，字符串行尾会自动加上回车换行，如果不需要回车换行，在行尾添加 \ 即可, 以下Demo表示首行和末行都不换行。示例如下：
 
-```
+```python
 print("""\
 Usage: thingy [OPTIONS]
      -h                        Display this usage message
@@ -94,7 +94,7 @@ Usage: thingy [OPTIONS]
 
 > 合并字符串
 
-```
+```python
 str = 'Python'
 'Hello, ''Python' 
 'Hello, ' + 'Python'
@@ -104,14 +104,14 @@ str = 'Python'
 
 > 字符串运算
 
-```
+```python
 3 * 'Hello!'
 # Hello!Hello!Hello! 
 ```
 
 > 拆分长字符串(不能作用于表达式以及变量)
 
-```
+```python
 str = ('大家好'
        '这是干什么？')
 print(str) # 打印不换行 '大家好这是干什么？'
@@ -121,7 +121,7 @@ print(str) # 打印不换行 '大家好这是干什么？'
 
 注意: 负索引从-1开始, -0和0没有区别, 切片会自动处理索引越界
 
-```
+```python
 str = "Python"
 word[0] # 打印P
 word[-1] # 打印n 从末尾开始计数 -2 则是o
@@ -134,7 +134,7 @@ len(str) # 获取字符串长度
 
 ### while
 
-```
+```python
 a, b = 0, 1
 while a < 10:
     print(a, end=" ")
@@ -143,7 +143,7 @@ while a < 10:
 
 ### if elif else
 
-```
+```python
 score = 96
 if score >= 95:
     print("A")
@@ -158,7 +158,7 @@ else:
 ### for
 
 > 01-遍历普通集合
-```
+```python
 strs = ["windows", "mac", "linux"]
 for str in strs:
     print(str, len(str), end=" ")
@@ -167,7 +167,7 @@ print("\n------------------------")
 ```
 
 > 02-遍历对象集合
-```
+```python
 users = {
     "id": 100,
     "name": "猪猪侠",
