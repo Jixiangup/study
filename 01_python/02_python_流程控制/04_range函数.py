@@ -1,5 +1,6 @@
+# range()函数拥有者包前不包后原则
 for i in range(10):
-    print(i, end=" ")
+    print(i, end=" ") # 从0...10遍历循环，
 
 print("\n-----------------------")
 
