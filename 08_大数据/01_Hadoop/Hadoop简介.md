@@ -82,7 +82,7 @@ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount 
 
 `wcinput/`: 指定需要统计的文件所在的目录
 
-`wcoutput`: 指定结果输出目录(如果文件已经存在则会直接报错)
+`wcoutput`: 指定结果输出目录(如果文件已经存在则会直接报错),`_SUCCESS`文件用作标识本次执行成功,没有其他数据.
 
 ## 伪集群启动
 
