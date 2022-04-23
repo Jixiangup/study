@@ -54,6 +54,31 @@ systemctl disable firewalld.service
 
 > 配置Hadoop的`bin`和`sbin`到path即可
 
+# 拷贝环境到多台机器
+
+- 拷贝Java和Hadoop到目标机器
+
+> 通过hostname拷贝文件或文件夹
+```shell
+#!/bin/bash
+# 获取需要拷贝的源路径
+source_dir=$1
+
+# 文件不存在退出
+if [[ -z $source_dir ]]; then
+        echo source_dir cannot be null
+        exit
+else
+        # 输入文件路径存在，找该文件 文件存在
+        if [[ -d $source_dir || -f $source_dir ]]; then
+                for hostname in hosts
+        # 文件不存在
+        else
+                echo filepath $source_dir not found
+        fi
+fi
+```
+
 # 运行Hadoop
 
 ## 本地启动
