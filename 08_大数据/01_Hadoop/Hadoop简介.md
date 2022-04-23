@@ -61,22 +61,34 @@ systemctl disable firewalld.service
 > 通过hostname拷贝文件或文件夹
 ```shell
 #!/bin/bash
+
+# 工具名称
+application_name=cptool
+
+# 定义日志等级
+error="[error - $application_name]: "
+
 # 获取需要拷贝的源路径
 source_dir=$1
 
 # 文件不存在退出
 if [[ -z $source_dir ]]; then
-        echo source_dir cannot be null
+        echo $error source_dir cannot be null
         exit
 else
         # 输入文件路径存在，找该文件 文件存在
         if [[ -d $source_dir || -f $source_dir ]]; then
-                for hostname in hosts
+                for node_num in {101..102}
+                do
+                        node=hadoop$node_num
+                        scp -r $source_dir root@$node:$source_dir
+                done
         # 文件不存在
         else
-                echo filepath $source_dir not found
+                echo $error filepath $source_dir not found
         fi
 fi
+
 ```
 
 # 运行Hadoop
