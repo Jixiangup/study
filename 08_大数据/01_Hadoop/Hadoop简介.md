@@ -37,6 +37,12 @@ yum install -y net-tool
 yum install -y vim
 ```
 
+- 安装rsync(最小软件操作系统则需要安装)
+
+```shell
+yum install -y rsync
+```
+
 - 关闭防火墙
 
 ```shell
@@ -88,7 +94,48 @@ else
                 echo $error filepath $source_dir not found
         fi
 fi
+```
 
+- 配置xsync
+
+```shell
+#!/bin/bash
+#1. 判断参数个数
+if [ $# -lt 1 ]
+then
+ echo Not Enough Arguement!
+ exit;
+fi
+#2. 遍历集群所有机器
+for host in hadoop102 hadoop103 hadoop104
+do
+ echo ==================== $host ====================
+ #3. 遍历所有目录，挨个发送
+ for file in $@
+ do
+ #4. 判断文件是否存在
+ if [ -e $file ]
+ then
+ #5. 获取父目录
+ pdir=$(cd -P $(dirname $file); pwd)
+ #6. 获取当前文件的名称
+ fname=$(basename $file)
+ ssh $host "mkdir -p $pdir"
+ rsync -av $pdir/$fname $host:$pdir
+ else
+ echo $file does not exists!
+ fi
+ done
+done
+
+```
+
+
+- 配置免密登录
+
+```shell
+ssh-keygen -t rsa
+ssh-copy-id {hostname}
 ```
 
 # 运行Hadoop
@@ -129,3 +176,158 @@ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount 
 
 > 使用所有Hadoop组件功能并且支持多节点、高可用(集群模式)
 
+### 集群配置
+
+#### 核心配置文件
+
+- core-size.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!-- 指定 NameNode 的地址 -->
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://hadoop100:8020</value>
+    </property>
+    <!-- 指定 hadoop 数据的存储目录 -->
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/opt/software/hadoop-3.1.3/data</value>
+    </property>
+    <!-- 配置 HDFS 网页登录使用的静态用户为 atguigu -->
+    <property>
+        <name>hadoop.http.staticuser.user</name>
+        <value>bnyte</value>
+    </property>
+</configuration>
+```
+
+- hdfs-size.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!-- nn web 端访问地址-->
+    <property>
+        <name>dfs.namenode.http-address</name>
+        <value>hadoop100:9870</value>
+    </property>
+    <!-- 2nn web 端访问地址-->
+    <property>
+        <name>dfs.namenode.secondary.http-address</name>
+        <value>hadoop102:9868</value>
+    </property>
+</configuration>
+```
+
+- yarn-size.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!-- 指定 MR 走 shuffle -->
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+    <!-- 指定 ResourceManager 的地址-->
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>hadoop102</value>
+    </property>
+    <!-- 环境变量的继承 -->
+    <property>
+        <name>yarn.nodemanager.env-whitelist</name>
+
+        <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CO
+            NF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAP
+            RED_HOME
+        </value>
+    </property>
+</configuration>
+```
+
+- mapred-site.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!-- 指定 MapReduce 程序运行在 Yarn 上 -->
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+</configuration>
+```
+
+- 将配置好的配置分发给其他的节点
+
+```shell
+xsync /opt/software/hadoop3.1.3/etc/hadoop/
+```
+
+
+- 配置/opt/software/hadoop-3.1.3/etc/hadoop/workers
+```shell
+hadoop100
+hadoop101
+hadoop102
+```
+
+> 注意：这一步配置不可以有任何的空格
+
+#### 群起集群
+
+> 如果是第一次启动集群需要在`hadoop100`初始化`NameNode`(注意：格式
+化 NameNode，会产生新的集群 id，导致 NameNode 和 DataNode 的集群 id 不一致，集群找
+不到已往数据。如果集群在运行过程中报错，需要重新格式化 NameNode 的话，一定要先停
+止 namenode 和 datanode 进程，并且要删除所有机器的 data 和 logs 目录，然后再进行格式
+化。)
+
+- 初始化集群(第一次启动需要)
+
+```shell
+hdfs namenode -format # 数据会被清空
+```
+
+- 启动集群
+
+```shell
+sh ${HADOOP_HOME}/sbin/start-dfs.sh
+```
+
+> 如果是使用`root`做的操作可能会报如下错
+
+```
+Starting namenodes on [hadoop100]
+ERROR: Attempting to operate on hdfs namenode as root
+ERROR: but there is no HDFS_NAMENODE_USER defined. Aborting operation.
+Starting datanodes
+ERROR: Attempting to operate on hdfs datanode as root
+ERROR: but there is no HDFS_DATANODE_USER defined. Aborting operation.
+Starting secondary namenodes [hadoop102]
+ERROR: Attempting to operate on hdfs secondarynamenode as root
+ERROR: but there is no HDFS_SECONDARYNAMENODE_USER defined. Aborting operation.
+```
+
+> 解决方案
+
+- 对于start-dfs.sh和stop-dfs.sh文件，添加下列参数
+
+```shell
+HDFS_DATANODE_USER=root
+HADOOP_SECURE_DN_USER=hdfs
+HDFS_NAMENODE_USER=root
+HDFS_SECONDARYNAMENODE_USER=root
+```
+
+- 对于start-yarn.sh和stop-yarn.sh文件，添加下列参数
+
+```shell
+#!/usr/bin/env bash
+YARN_RESOURCEMANAGER_USER=root
+HADOOP_SECURE_DN_USER=yarn
+YARN_NODEMANAGER_USER=root
+```
