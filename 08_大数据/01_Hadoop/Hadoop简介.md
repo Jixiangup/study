@@ -50,6 +50,31 @@ systemctl stop firewalld
 systemctl disable firewalld.service
 ```
 
+- 虚拟机创建自定义用户
+
+```shell
+useradd bnyte
+passwd ${username}
+```
+
+- 配置 bnyte 用户具有 root 权限
+
+> 修改/etc/sudoers 文件，在%wheel 这行下面添加一行，如下所示：
+
+```shell script
+vim /etc/sudoers
+
+## Allow root to run any commands anywhere
+root ALL=(ALL) ALL
+## Allows people in group wheel to run all commands
+%wheel ALL=(ALL) AL
+
+bnyte ALL=(ALL) NOPASSWD:ALL
+# 注意：bnyte 这一行不要直接放到 root 行下面，因为所有用户都属于 wheel 组，你先
+# 配置了 bnyte 具有免密功能，但是程序执行到%wheel 行时，该功能又被覆盖回需要
+# 密码。所以 bnyte 要放到%wheel 这行下面。
+```
+
 > 为方便开发最好配置hosts、配置高可用集群克隆多台模板机器运行并配置网卡
 
 - 安装JDK
@@ -59,6 +84,15 @@ systemctl disable firewalld.service
 - 安装HadoopV3.0.3
 
 > 配置Hadoop的`bin`和`sbin`到path即可
+
+> 目录结构说明
+```
+bin: 存放对Hadoop相关服务（hdfs、yarn、MapReduce）进行操作的脚本
+etc: Hadoop的配置文件目录, 存放Hadoop的配置文件
+lib: 存放Hadoop的本地库(对数据进行压缩解压缩功能)
+sbin: 存放启动或停止Hadoop相关服务的脚本
+share: 存放Hadoop的依赖jar包,文档,和官方案例
+```
 
 # 拷贝环境到多台机器
 
@@ -103,31 +137,30 @@ fi
 #1. 判断参数个数
 if [ $# -lt 1 ]
 then
- echo Not Enough Arguement!
- exit;
+    echo Not Enough Arguement!
+    exit;
 fi
 #2. 遍历集群所有机器
-for host in hadoop102 hadoop103 hadoop104
+for host in hadoop101 hadoop102
 do
- echo ==================== $host ====================
- #3. 遍历所有目录，挨个发送
- for file in $@
- do
- #4. 判断文件是否存在
- if [ -e $file ]
- then
- #5. 获取父目录
- pdir=$(cd -P $(dirname $file); pwd)
- #6. 获取当前文件的名称
- fname=$(basename $file)
- ssh $host "mkdir -p $pdir"
- rsync -av $pdir/$fname $host:$pdir
- else
- echo $file does not exists!
- fi
- done
+    echo ==================== $host ====================
+    #3. 遍历所有目录，挨个发送
+    for file in $@
+    do
+    #4. 判断文件是否存在
+    if [ -e $file ]
+    then
+        #5. 获取父目录
+        pdir=$(cd -P $(dirname $file); pwd)
+        #6. 获取当前文件的名称
+        fname=$(basename $file)
+        ssh $host "mkdir -p $pdir"
+        rsync -av $pdir/$fname $host:$pdir
+    else
+        echo $file does not exists!
+    fi
+    done
 done
-
 ```
 
 
@@ -178,7 +211,38 @@ hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount 
 
 ### 集群配置
 
-#### 核心配置文件
+#### 集群规划
+
+Tips: 
+
+> NameNode 和 SecondaryNameNode 不要安装在同一台服务器
+>
+> ResourceManager 也很消耗内存，不要和 NameNode、SecondaryNameNode 配置在
+  同一台机器上。
+
+
+| 组件\机器 | hadoop100 | hadoop101 | hadoop102 |
+|  ----  | ---- | ---- | ---- |
+| hdfs  | NameNode\DataNode | DataNode | SecondaryNameNode\DataNode |
+| 计算组件 | NodeManager | ResourceManager\NodeManager | NodeManager |
+
+#### 配置文件说明
+
+Hadoop 配置文件分两类：默认配置文件和自定义配置文件，只有用户想修改某一默认
+配置值时，才需要修改自定义配置文件，更改相应属性值。
+
+- 默认配置文件
+
+| 要获取的默认文件 | hadoop100 | 
+|  ----  | ---- |
+| `core-default.xml`  | hadoop-common-3.1.3.jar/core-default.xml | 
+| `hdfs-default.xml`   | hadoop-hdfs-3.1.3.jar/hdfs-default.xml | 
+| `yarn-default.xml`    | hadoop-yarn-common-3.1.3.jar/yarn-default.xml | 
+| `mapred-default.xml` | hadoop-mapreduce-client-core-3.1.3.jar/mapred-default.xml |
+
+- 自定义配置文件
+ 
+`core-site.xml`、`hdfs-site.xml`、`yarn-site.xml`、`mapred-site.xml` 四个配置文件存放在`$HADOOP_HOME/etc/hadoop` 这个路径上，用户可以根据项目需求重新进行修改配置。
 
 - core-size.xml
 
