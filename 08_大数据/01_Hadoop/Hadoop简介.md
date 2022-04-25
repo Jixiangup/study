@@ -258,7 +258,7 @@ Hadoop 配置文件分两类：默认配置文件和自定义配置文件，只�
     <!-- 指定 hadoop 数据的存储目录 -->
     <property>
         <name>hadoop.tmp.dir</name>
-        <value>/opt/software/hadoop-3.1.3/data</value>
+        <value>/opt/module/hadoop-3.1.3/data</value>
     </property>
     <!-- 配置 HDFS 网页登录使用的静态用户为 atguigu -->
     <property>
@@ -299,7 +299,7 @@ Hadoop 配置文件分两类：默认配置文件和自定义配置文件，只�
     <!-- 指定 ResourceManager 的地址-->
     <property>
         <name>yarn.resourcemanager.hostname</name>
-        <value>hadoop102</value>
+        <value>hadoop101</value>
     </property>
     <!-- 环境变量的继承 -->
     <property>
@@ -329,11 +329,11 @@ Hadoop 配置文件分两类：默认配置文件和自定义配置文件，只�
 - 将配置好的配置分发给其他的节点
 
 ```shell
-xsync /opt/software/hadoop3.1.3/etc/hadoop/
+xsync /opt/module/hadoop3.1.3/etc/hadoop/
 ```
 
 
-- 配置/opt/software/hadoop-3.1.3/etc/hadoop/workers
+- 配置/opt/module/hadoop-3.1.3/etc/hadoop/workers
 ```shell
 hadoop100
 hadoop101
