@@ -50,14 +50,14 @@ systemctl stop firewalld
 systemctl disable firewalld.service
 ```
 
-- 虚拟机创建自定义用户
+- 虚拟机创建自定义用户(不用执行)
 
 ```shell
 useradd bnyte
 passwd ${username}
 ```
 
-- 配置 bnyte 用户具有 root 权限
+- 配置 bnyte 用户具有 root 权限(不用执行)
 
 > 修改/etc/sudoers 文件，在%wheel 这行下面添加一行，如下所示：
 
@@ -84,6 +84,18 @@ bnyte ALL=(ALL) NOPASSWD:ALL
 - 安装HadoopV3.0.3
 
 > 配置Hadoop的`bin`和`sbin`到path即可
+>
+> 配置文件
+
+` vim /etc/profile.d/software.sh`
+
+```shell script
+# !/bin/bash
+export JAVA_HOME=/opt/module/jdk1.8.0_212
+export HADOOP_HOME=/opt/module/hadoop-3.1.3
+
+export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+```
 
 > 目录结构说明
 ```
@@ -96,7 +108,7 @@ share: 存放Hadoop的依赖jar包,文档,和官方案例
 
 # 拷贝环境到多台机器
 
-- 拷贝Java和Hadoop到目标机器
+- 拷贝Java和Hadoop到目标机器(不用执行)
 
 > 通过hostname拷贝文件或文件夹
 ```shell
@@ -162,7 +174,6 @@ do
     done
 done
 ```
-
 
 - 配置免密登录
 
@@ -268,7 +279,7 @@ Hadoop 配置文件分两类：默认配置文件和自定义配置文件，只�
 </configuration>
 ```
 
-- hdfs-size.xml
+- hdfs-site.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -286,7 +297,7 @@ Hadoop 配置文件分两类：默认配置文件和自定义配置文件，只�
 </configuration>
 ```
 
-- yarn-size.xml
+- yarn-site.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -304,11 +315,7 @@ Hadoop 配置文件分两类：默认配置文件和自定义配置文件，只�
     <!-- 环境变量的继承 -->
     <property>
         <name>yarn.nodemanager.env-whitelist</name>
-
-        <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CO
-            NF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAP
-            RED_HOME
-        </value>
+        <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
     </property>
 </configuration>
 ```
@@ -394,4 +401,25 @@ HDFS_SECONDARYNAMENODE_USER=root
 YARN_RESOURCEMANAGER_USER=root
 HADOOP_SECURE_DN_USER=yarn
 YARN_NODEMANAGER_USER=root
+```
+
+- 在配置了 ResourceManager 的节点`hadoop101`启动 YARN
+
+```shell script
+./sbin/start-yarn.sh
+```
+
+- Web 端访问`http://hadoop100:9870` HDFS 的 NameNode
+
+- Web 端访问`http://hadoop101:8088`查看 YARN 的 ResourceManager
+
+#### 集群基本测试
+
+> 上传文件到集群
+
+- 上传小文件
+
+```shell script
+hadoop fs -mkdir /input  # 在hdfs创建文件夹
+hadoop fs -put ${HADOOP_HOME}/wcinput/word.txt /input # -put上传文件 本地文件 hdfs服务器路径
 ```
