@@ -484,4 +484,40 @@ jps # 查看是否启动成功
  
  #### 配置日志的聚集
  
- 日志聚集概念：应用运行完成以后，将程序运行日志信息上传到 HDFS 系统上
+日志聚集概念：应用运行完成以后，将程序运行日志信息上传到 HDFS 系统上
+
+![](./images/1.png)
+
+> 开启日志聚集功能，需要重新启动NodeManager、ResourceManager和HistoryServer
+
+- 配置`yarn-site.xml`
+
+```
+<!-- 开启日志聚集功能 -->
+    <property>
+        <name>yarn.log-aggregation-enable</name>
+        <value>true</value>
+    </property>
+    <!-- 设置日志聚集服务器地址 -->
+    <property>
+        <name>yarn.log.server.url</name>
+        <value>http://hadoop100:19888/jobhistory/logs</value>
+    </property>
+    <!-- 设置日志保留时间为 7 天 -->
+    <property>
+        <name>yarn.log-aggregation.retain-seconds</name>
+        <value>604800</value>
+    </property>
+```
+
+- 分发配置
+
+- 关闭NodeManager、ResourceManager、HistoryServer
+
+```shell script
+stop-yarn.sh # 关闭yarn
+mapred --deamon stop historyservice
+
+start-yarn.sh # 启动yarn
+mapred --daemon start historyserver
+```
