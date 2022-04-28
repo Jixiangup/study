@@ -423,3 +423,65 @@ YARN_NODEMANAGER_USER=root
 hadoop fs -mkdir /input  # 在hdfs创建文件夹
 hadoop fs -put ${HADOOP_HOME}/wcinput/word.txt /input # -put上传文件 本地文件 hdfs服务器路径
 ```
+
+- 查看上传结果
+
+```
+1. 进入hdfs控制台界面`hadoop100:9870`
+2. Utilities -> Browse the file system 查看文件系统
+```
+
+- 查看hdfs文件保存路径，查看三台集群储存的数据确认高可用特性
+
+```shell script
+cd ${HADOOP_HOME}/data/dfs/data/current/BP-739053608-192.168.100.100-1650959465447/current/finalized/subdir0/subdir0/
+ll # 这个位置不带meta的文件就是数据文件了，在其他的集群也查看确认一下
+```
+
+- 从hdfs下载数据
+
+> hadoop fs -get ${HDFS_FILEPATH} ${LOCAL_DOWNLOAD_PATH} 
+
+```
+hadoop fs -get /input/word.txt ./
+```
+
+- 执行wordcount程序
+
+```
+# hadoop jar {execute_jar} {jarpath} {type} {loadfile} {execution_result_path}
+hadoop jar /opt/module/hadoop-3.1.3/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount /input/word.txt /wc/output
+```
+
+#### 配置历史服务器
+
+为了查看程序的历史运行情况，需要配置一下历史服务器。
+
+- 配置`mapred-site.xml`
+
+```
+<!-- 历史服务器端地址 -->
+<property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>hadoop100:10020</value>
+</property>
+<!-- 历史服务器 web 端地址 -->
+<property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>hadoop100:19888</value>
+</property>
+```
+
+- 分发配置
+
+- 启动历史服务器
+```shell script
+mapred --daemon start historyserver
+jps # 查看是否启动成功
+```
+
+ - 访问历史服务器web端`http://hadoop100:19888/jobhistory`
+ 
+ #### 配置日志的聚集
+ 
+ 日志聚集概念：应用运行完成以后，将程序运行日志信息上传到 HDFS 系统上
