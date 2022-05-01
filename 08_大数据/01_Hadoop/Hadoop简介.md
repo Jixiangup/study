@@ -521,3 +521,115 @@ mapred --deamon stop historyservice
 start-yarn.sh # 启动yarn
 mapred --daemon start historyserver
 ```
+
+#### 集群时间同步
+
+> 解决不同集群之中的所有集群时间不同这个时候yarn调度的时间不同其他节点发生冲突可能导致任务不会执行
+> 
+> 如果服务器在公网环境（能连接外网），可以不采用集群时间同步，因为服务器会定期 和公网时间进行校准；
+> 
+> 如果服务器在内网环境，必须要配置集群时间同步，否则时间久了，会产生时间偏差， 导致集群执行任务时间不同步。
+
+- 需求
+
+找一个机器，作为时间服务器，所有的机器与这台集群时间进行定时的同步，生产环境
+根据任务对时间的准确程度要求周期同步。测试环境为了尽快看到效果，采用 1 分钟同步一
+次。
+
+![](images/2.png)
+
+##### 时间服务器配置（必须 root 用户）
+
+- 查看所有节点 ntpd 服务状态和开机自启动状态
+```shell script
+systemctl status ntpd
+systemctl start ntpd
+systemctl is-enabled ntpd
+```
+
+- 修改 `hadoop100` 的 `ntp.conf` 配置文件
+```shell
+sudo vim /etc/ntp.conf
+```
+
+修改 1（授权 192.168.100.0-192.168.100.255 网段上的所有机器可以从这台机器上查询和同步时间）
+
+> restrict 192.168.100.0 mask 255.255.255.0 nomodify notrap
+```shell
+restrict 192.168.100.0 mask 255.255.255.0 nomodify notrap
+```
+
+修改 2（集群在局域网中，不使用其他互联网上的时间）
+
+```shell
+server 0.centos.pool.ntp.org iburst
+server 1.centos.pool.ntp.org iburst
+server 2.centos.pool.ntp.org iburst
+server 3.centos.pool.ntp.org iburst
+# 将上面配置改为如下配置
+#server 0.centos.pool.ntp.org iburst
+#server 1.centos.pool.ntp.org iburst
+#server 2.centos.pool.ntp.org iburst
+#server 3.centos.pool.ntp.org iburst
+```
+
+添加 3（当该节点丢失网络连接，依然可以采用本地时间作为时间服务器为集群中的其他节点提供时间同步）
+
+```shell
+server 127.127.1.0
+fudge 127.127.1.0 stratum 10
+```
+
+- 修改 hadoop100 的/etc/sysconfig/ntpd 文件
+
+```shell
+sudo vim /etc/sysconfig/ntpd
+```
+
+增加内容如下（让硬件时间与系统时间一起同步）
+
+```shell
+SYNC_HWCLOCK=yes
+```
+
+- 重新启动 ntpd 服务
+
+```shell
+sudo systemctl start ntpd
+```
+
+- 设置 ntpd 服务开机启动
+
+```shell
+sudo systemctl enable ntpd
+```
+
+##### 其他机器配置（必须 root 用户）
+
+- 关闭所有节点上 ntp 服务和自启动
+```shell
+sudo systemctl stop ntpd
+sudo systemctl disable ntpd
+sudo systemctl stop ntpd
+sudo systemctl disable ntpd
+```
+
+- 在其他机器配置 1 分钟与时间服务器同步一次
+```shell
+ sudo crontab -e
+```
+
+- 编写定时任务如下：
+```shell
+*/1 * * * * /usr/sbin/ntpdate hadoop102
+```
+
+- 修改任意机器时间
+```shell
+sudo date -s "2021-9-11 11:11:11"
+```
+
+- 1 分钟后查看机器是否与时间服务器同步
+```shell
+sudo date
+```
