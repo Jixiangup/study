@@ -32,3 +32,4 @@ logs
 
 # java
 *.class
+*/target/
