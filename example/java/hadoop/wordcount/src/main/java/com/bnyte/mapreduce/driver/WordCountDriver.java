@@ -48,7 +48,9 @@ public class WordCountDriver {
         FileOutputFormat.setOutputPath(job, new Path("D:\\hadoop\\example\\output"));
 
         // 提交job
-        job.waitForCompletion(true);
+        job.waitForCompletion(true); // 可以看到更详细的运行日志
+        // 或者submit
+//        job.submit();
     }
 
 }

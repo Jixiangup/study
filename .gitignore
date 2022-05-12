@@ -29,3 +29,6 @@ xcschemes
 # log
 *.log
 logs
+
+# java
+*.class
