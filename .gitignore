@@ -22,3 +22,10 @@ DerivedData
 Pods
 Podfile.lock
 xcschemes
+
+# idea
+*.iml
+
+# log
+*.log
+logs

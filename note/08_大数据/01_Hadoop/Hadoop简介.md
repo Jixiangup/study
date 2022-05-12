@@ -486,7 +486,7 @@ jps # 查看是否启动成功
  
 日志聚集概念：应用运行完成以后，将程序运行日志信息上传到 HDFS 系统上
 
-![](./images/1.png)
+![](images/1.png)
 
 > 开启日志聚集功能，需要重新启动NodeManager、ResourceManager和HistoryServer
 
