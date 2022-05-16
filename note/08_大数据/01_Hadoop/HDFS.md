@@ -157,7 +157,19 @@ hadoop fs -appendToFile {localPath} {remotePath}
 
 ### 下载
 
+- copyToLocal
 
+从`HDFS`复制到本地
+
+```shell script
+hadoop fs -copyToLocal {remotePath} {localPath}
+```
+
+- get等价于 copyToLocal
+
+```shell script
+hadoop fs -get {remotePath} {localPath}
+```
 
 # 错误异常
 
