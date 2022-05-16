@@ -23,11 +23,8 @@ public class WordCountDriver {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 
-        if (null == args) throw new RuntimeException("output file cannot be empty");
+        if (null == args || args.length < 2) throw new RuntimeException("output file cannot be empty");
         List<String> argList = Arrays.asList(args);
-        if (argList.size() < 2) {
-            throw new RuntimeException("output file cannot be empty");
-        }
 
 
         // 指定hadoop_home
