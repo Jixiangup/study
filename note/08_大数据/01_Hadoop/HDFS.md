@@ -171,6 +171,61 @@ hadoop fs -copyToLocal {remotePath} {localPath}
 hadoop fs -get {remotePath} {localPath}
 ```
 
+### hdfs直接操作
+
+- ls: 显示目录信息
+
+```shell script
+hadoop fs -ls {remotePath}
+```
+
+- cat: 显示文件内容
+
+```shell script
+hadoop fs -cat {remotePath}
+```
+
+- -chgrp、-chmod、-chown：Linux 文件系统中的用法一样，修改文件所属权限
+
+```shell script
+hadoop fs -chmod 666 {remotePath}
+```
+
+- mkdir: 创建路径
+
+```shell script
+hadoop fs -mkdir {remotePath}
+```
+
+- cp: 从`HDFS`的一个路径拷贝到`HDFS`的另一个路径
+
+```shell script
+hadoop fs -cp {remotePath} {remotePath}
+```
+
+- mv: 从`HDFS`的一个路径剪切到`HDFS`的另一个路径
+
+```shell script
+hadoop fs -mv {remotePath} {remotePath}
+```
+
+- tail: 显示一个文件的穆伟`1kb`的数据
+
+```shell script
+hadoop fs -tail {remotePath}
+```
+
+- rm: 删除文件或文件夹
+
+```shell script
+hadoop fs -rm {remotePath}
+hadoop fs -rm -r {remotePath} # 递归删除
+```
+
+- du: 统计文件夹的大小信息
+
+- -setrep: 设置HDFS中文件的副本数量
+
 # 错误异常
 
 - 报错信息
