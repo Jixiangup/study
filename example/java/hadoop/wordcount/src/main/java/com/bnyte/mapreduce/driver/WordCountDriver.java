@@ -9,6 +9,8 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -21,10 +23,13 @@ import java.util.List;
  */
 public class WordCountDriver {
 
+    private static final Logger log = LoggerFactory.getLogger(WordCountDriver.class);
+
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 
         if (null == args || args.length < 2) throw new RuntimeException("output file cannot be empty");
         List<String> argList = Arrays.asList(args);
+        log.info("{} input args value for {}", WordCountDriver.class, argList);
 
 
         // 指定hadoop_home
