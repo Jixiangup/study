@@ -10,7 +10,7 @@
 
 ```shell
 # 下载wget
-yarn -y install wget
+yum -y install wget
 
 # 下载zookeeper
 wget https://dlcdn.apache.org/zookeeper/zookeeper-3.8.0/apache-zookeeper-3.8.0-bin.tar.gz
