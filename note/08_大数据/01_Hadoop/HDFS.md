@@ -284,3 +284,20 @@ Failed to retrieve data from /webhdfs/v1/?op=LISTSTATUS: Server Error
 
 下载 [JavaX-activation](https://repo1.maven.org/maven2/javax/activation/activation/1.1.1/activation-1.1.1.jar) 放到hadoop的./share/hadoop/common/lib/ 目录下就好了
 
+- 报错信息
+
+```
+在web端可能出现没有权限访问相关的问题，这是因为hdfs开启了安全模式，因为我们是用root启动的，只需要吧安全启动关闭就行了
+```
+
+- 解决方案
+
+> 修改所有hadoop集群的`hdfs-site.xml`添加以下内容
+
+```xml
+    <!-- 关闭权限校验，允许root用户 -->
+    <property>
+        <name>dfs.permissions</name>
+        <value>false</value>
+    </property>
+```
