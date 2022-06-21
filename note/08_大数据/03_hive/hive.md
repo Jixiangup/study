@@ -73,51 +73,61 @@ exit;
         <name>javax.jdo.option.ConnectionURL</name>
         <value>jdbc:mysql://hadoop100:3306/hive?useSSL=false</value>
     </property>
+    
     <!-- jdbc 连接的 Driver-->
     <property>
         <name>javax.jdo.option.ConnectionDriverName</name>
         <value>com.mysql.cj.jdbc.Driver</value>
     </property>
+    
     <!-- jdbc 连接的 username-->
     <property>
         <name>javax.jdo.option.ConnectionUserName</name>
         <value>root</value>
     </property>
+    
     <!-- jdbc 连接的 password -->
     <property>
         <name>javax.jdo.option.ConnectionPassword</name>
         <value>123456</value>
     </property>
+    
     <!-- Hive 元数据存储版本的验证 -->
     <property>
         <name>hive.metastore.schema.verification</name>
         <value>false</value>
     </property>
+    
     <!--元数据存储授权-->
     <property>
         <name>hive.metastore.event.db.notification.api.auth</name>
         <value>false</value>
     </property>
+    
     <!-- Hive 默认在 HDFS 的工作目录 -->
     <property>
         <name>hive.metastore.warehouse.dir</name>
         <value>/user/hive/warehouse</value>
     </property>
+    
     <!-- 指定存储元数据要连接的地址,如果不配置源数据访问则忽略改配置, 注释掉即可 -->
     <property>
         <name>hive.metastore.uris</name>
         <value>thrift://hadoop100:9083</value>
     </property>
+    
     <!-- 指定 hiveserver2 连接的 host, 如果不配置jdbc链接hive忽略即可 -->
     <property>
         <name>hive.server2.thrift.bind.host</name>
         <value>hadoop100</value>
     </property>
+    
     <!-- 指定 hiveserver2 连接的端口号, 如果不配置jdbc链接hive忽略即可 -->
     <property>
         <name>hive.server2.thrift.port</name>
         <value>10000</value>
     </property>
+    
     <!-- 解决root启动无法使用jdbc远程连接问题, 如果不配置jdbc链接hive忽略即可 -->
     <property>
         <name>hive.server2.enable.doAs</name>
@@ -126,6 +136,18 @@ exit;
             Setting this property to true will have HiveServer2 execute
             Hive operations as the user making the calls to it.
         </description>
+    </property>
+    
+    <!-- 指定标头, 如查询是会返回数据对应的那个字段 -->
+    <property>
+        <name>hive.cli.print.header</name>
+        <value>true</value>
+    </property>
+    
+    <!-- 是否在控制台显示当前所在db -->
+    <property>
+        <name>hive.cli.print.current.db</name>
+        <value>true</value>
     </property>
 </configuration>
 ```
@@ -171,7 +193,7 @@ beeline -u jdbc:hive2://hadoop102:10000
 #### 也可以使用其他的客户端链接测试
 
 
-# 常用交互命令
+# 常用命令和配置
 
 ## -e
 
@@ -201,6 +223,80 @@ mkdir -p /opt/output/hive
 hive -f /opt/workspaces/hive/sql/hive-sql-00.sql > /opt/output/hive/hive-sql-00
 ```
 
+## dfs -[operating]
+
+> 在hive中使用(操作)hdfs
+
+```shell
+# 查看/下的路径
+dfs -ls /
+```
+
+## hive历史命令
+
+```shell
+cd ~
+cat .hivehistory
+```
+
+## hive属性配置
+
+- 运行日志
+
+```shell
+# 默认log文件存放在/tmp/${username}/hive.log
+cp ${HIVE_HOME}/conf/hive-log4j2-properties.template ${HIVE_HOME}/conf/hive-log4j2-properties
+# 配置属性项
+hive.log.dir=/opt/documentation/logs/hive/
+```
+
+- 打印当前库和表头
+
+> 编辑hive-site.xml
+```shell
+    <property>
+        <name>hive.cli.print.header</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>hive.cli.print.current.db</name>
+        <value>true</value>
+    </property>
+```
+
+## 参数配置方式
+
+1. 查看当前所有的配置信息
+```shell
+set;
+```
+2. 参数的三种配置方式
+```markdown
+# 文件配置方式
+
+> 用户自定义配置会覆盖默认配置, 另外Hive也会读入Hadoop的配置, 因为Hive是作为Hadoop的客户端启动的, Hive的配置会覆盖Hadoop的配置.配置文件的设定对本机启动的所有hive有效
+
+默认配置文件: ${HIVE_HOME}/conf/hive-default.xml
+用户自定义配置文件: ${HIVE_HOME}/conf/hive-site.xml
+
+# 命令行参数方式
+
+> 启动hive时可以在命令行添加-hiveconf param=value来设定参数
+
+如:
+
+hive -hiveconf mapred.reduce.tasks=10
+
+> 这种方式只对本次hive启动有效
+
+查看参数
+
+> set mapred.reduce.tasks;
+
+可以在 HQL 中使用 SET 关键字设定参数,仅对本次 hive 启动有效。
+
+> set mapred.reduce.tasks=100;
+```
 
 
 > 如果配置了源数据启动，就必须启动源数据服务`hive --service metastore
