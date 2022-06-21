@@ -298,7 +298,105 @@ hive -hiveconf mapred.reduce.tasks=10
 > set mapred.reduce.tasks=100;
 ```
 
+# 数据类型
+
+## 基本数据类型
+| Hive      | Java    | 长度                         | 语法示例                                  |
+|-----------|---------|----------------------------|---------------------------------------|
+| TINYINT   | byte    | 1byte 有符号整数                | 20                                    |
+| SMALINT   | short   | 2byte 有符号整数                | 20                                    |
+| INT       | int     | 4byte 有符号整数                | 20                                    |
+| BIGINT    | long    | 8byte 有符号整数                | 20                                    |
+| BOOLEAN   | boolean | 布尔类型，true 或者false          | TRUE FALSE                            |
+| FLOAT     | float   | 单精度浮点数                     | 3.14159                               |
+| DOUBLE    | double  | 双精度浮点数                     | 3.14159                               |
+| STRING    | string  | 字符系列。可以指定字符集。可以使用单引号或者双引号。 | ‘ now is the time ’“for all good men” |
+| TIMESTAMP |         | 时间类型                       |                                       |
+| BINARY    |         | 字节数组                       |                                       |
+
+> 对于 Hive 的 String 类型相当于数据库的 varchar 类型，该类型是一个可变的字符串，不
+过它不能声明其中最多能存储多少个字符，理论上它可以存储 2GB 的字符数。
+
+## 集合数据类型
+
+| 数据类型   | 描述                                                                                                                  | 语法示例                                           |
+|--------|---------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
+| STRUCT | 和 c 语言中的 struct 类似，都可以通过“点”符号访问元素内容。例如，如果某个列的数据类型是 STRUCT{first STRING, last STRING},那么`第 1 个元素可以通过字段.first 来 引用。`  | struct()例 如 struct<street:string, city:string> |
+| MAP    | MAP 是一组键-值对元组集合，使用数组表示法可以访问数据。例如，如果某个列的数据类型是 MAP，其中键 ->值对是’first’->’John’和’last’->’Doe’，那么可以`通过字段名[‘last’]获取最后一个元素` | struct()例 如 struct<street:string, city:string> |
+| ARRAY  | 数组是一组具有相同类型和名称的变量的集合。这些变量称为数组的元素，每个数组元素都有一个编号，编号从 零开始。例如，数组值为[‘John’, ‘Doe’]，`那么第 2 个 元素可以通过数组名[1]进行引用。`            | Array()例如 array<string>                        |
+
+> Hive 有三种复杂数据类型 ARRAY、MAP 和 STRUCT。ARRAY 和 MAP 与 Java 中的 Array
+和 Map 类似，而 STRUCT 与 C 语言中的 Struct 类似，它封装了一个命名字段集合，复杂数据
+类型允许任意层次的嵌套。
+
+### 案例实操
+
+- 假设某表有如下一行，用`JSON`格式来表示数据结构。
+
+```
+{
+  "name": "ggboy",
+  "friends": ["zhuzhuxia", "eeboy"],  // Array
+  "children": { // Map
+    "xiaoGgboy": 18,
+    "xiaoEeboy": 19
+  },
+  "address": { // 结构Struct
+    "street": "HuaiHua",
+    "city": "HuNan"
+  }
+}
+```
+
+- 在 Hive 里创建对应的表，并导入数据。
+
+> 在宿主机创建文件,
+
+```shell
+touch "/opt/workspaces/hive/import_data_type_test"
+vim /opt/workspaces/hive/import_data_type_test
+```
+
+> 输入需要导入的数据
+
+```
+ggboy,zhuzhuxia_eeboy,xiaoGgboy:18_xiaoEeboy:19,HuaiHua_HuNan
+ggboy1,zhuzhuxia1_eeboy1,xiaoGgboy1:181_xiaoEeboy1:191,HuaiHua1_HuNan1
+```
+
+> 在hive导入数据
+
+```hiveql
+-- 创建数据库
+create database if not exists data_type_test_db;
+-- 使用数据库
+use data_type_test_db;
+-- 建表
+create table test(
+    name string,
+    friends array<string>,
+    children map<string, int>,
+    address struct<street:string, city:string>
+)
+row format delimited fields terminated by ',' -- 列数据之间的分割符号
+collection items terminated by '_' -- 集合数据之间的分割符号
+map keys terminated by ':' -- map的key和value之间的分隔符
+lines terminated by '\n' -- 每行数据的分割符号
+;
+-- 加载数据
+load data local inpath '/opt/workspaces/hive/import_data_type_test' into table test;
+-- 查询结果确认
+Select * from test;
+```
+
+```
+-- 以下是查询之后确认结果的数据输出结果
+hive (data_type_test_db)> select * from test;
+OK
+test.name       test.friends    test.children   test.address
+ggboy   ["zhuzhuxia","eeboy"]   {"xiaoGgboy":18,"xiaoEeboy":19} {"street":"HuaiHua","city":"HuNan"}
+ggboy1  ["zhuzhuxia1","eeboy1"] {"xiaoGgboy1":181,"xiaoEeboy1":191}     {"street":"HuaiHua1","city":"HuNan1"}
+Time taken: 0.187 seconds, Fetched: 2 row(s)
+```
 
 > 如果配置了源数据启动，就必须启动源数据服务`hive --service metastore
->
-> 
