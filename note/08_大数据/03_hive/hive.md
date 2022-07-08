@@ -399,4 +399,59 @@ ggboy1  ["zhuzhuxia1","eeboy1"] {"xiaoGgboy1":181,"xiaoEeboy1":191}     {"street
 Time taken: 0.187 seconds, Fetched: 2 row(s)
 ```
 
+## 类型转换
+
+> hive的院子数据类型是可以进行隐式类型转换的, 类似于Java的类型转换,例如某表达式使用`INT`类型, `TINYINT`会自动转换为`INT`类型, 但是`Hive`不会进行反向转化, 例如: 某表达式使用`TINYINT`类型, `INT不会自动转换为TINYINT`类型, 它会返回错误, 除非使用 `CAST`进行强制转换.
+
+- 规则如下
+
+```
+1. 任何证书类型都可以隐式的转换为一个范围更广的类型，如TINYINT可以转换成INT, INT可以转换成BIGINT
+2. 所有证书类型、FLOAT和STRING类型都可以隐式转换成DOUBLE
+3. TINYINT, SMALLINT, INT都可以转换为FLOAT
+4. BOOLEAN不可以转换为其他任何类型
+```
+
+- 使用`CAST`强制转换
+
+```hiveql
+select 1 + '2', 1 + CAST('1' AS INT);
++------+------+--+
+| _c0 | _c1 |
++------+------+--+
+| 3.0 | 3 |
++------+------+--+
+```
+
+# DDL数据定义
+
+## 创建数据库
+
+```
+create database [if not exists] {database_name}
+[comment ${comment}]
+[location ${hdfs_path}]
+[with dbproperties (${key}=${value}...)]
+```
+
+- 创建一个数据库，数据库在HDFS上的默认存储路径是/user/hive/warehouse/*.db
+
+```hiveql
+create database test_db;
+```
+
+- 避免要创建的数据库已经存在错误，增加`if not exists`判断
+
+```hiveql
+create database if not exists test_db;
+```
+
+- 创建一个数据库, 指定数据库在HDFS上存放的位置
+
+```hiveql
+create database if not exists test_db
+location '/opt/workspaces/hive/dbs';
+```
+
+
 > 如果配置了源数据启动，就必须启动源数据服务`hive --service metastore
