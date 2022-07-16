@@ -12,7 +12,16 @@
 
     .reset_inline {
         border: 1px solid deeppink;
-        display: inline;
+        display: inline-block;
+        width: 100px;
+    }
+
+    .reset_inline > li:first-child {
+        font-weight: bolder;
+    }
+
+    .reset_inline > li {
+        list-style-type: none;
     }
 
 </style>
@@ -21,6 +30,11 @@
         <ul class="reset_inline">
             <li>购物指南</li>
             <li>购物流程</li>
+        </ul>
+
+        <ul class="reset_inline">
+            <li>配送方式</li>
+            <li>上门自提</li>
         </ul>
 
         <ul class="reset_inline">
