@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <script src="../js/vue.global.js"></script>
+    <script>
+        window.onload = function () {
+            const Counter = {
+
+                // 数据标识对象
+                data() {
+                    return {
+                        counter: 0
+                    }
+                }
+            }
+
+            Vue.createApp(Counter).mount('#root')
+        }
+    </script>
+</head>
+<body>
+<div id="root">
+    <!-- {{ ${dataName} }} 语法用于显示data函数数据-->
+    <div id="count">Counter: {{ counter }}</div>
+    <!-- @click用于绑定点击事件 -->
+    <button @click="counter += 1">点击+1</button>
+    <button @click="counter -= 1">点击-1</button>
+</div>
+</body>
+</html>
