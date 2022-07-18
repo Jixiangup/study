@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+td, th {
+    width: 200px;
+    /*文字居中*/
+    text-align: center;
+    height: 50px;
+}
+
+.title-content {
+    background-color: rgb(94, 185, 138);
+    color: white;
+}
+
+.garyTd {
+    background-color: rgb(221, 240, 231);
+}
+
+.grayColumn {
+    background-color: rgb(248, 248, 248);
+}
+
+table {
+    /*去除表格之间的空隙*/
+    border-collapse: collapse;
+}
