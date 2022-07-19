@@ -10,10 +10,10 @@
 
 ## bigdata
 
-- [ ] Hadoop
+- [ ] [Hadoop](./note/08_大数据/01_Hadoop)
 
 ## frontend
 
-- [X] CSS
-- [X] HTML
+- [X] [CSS](./note/09_frontend/03_css)
+- [X] [HTML](./note/09_frontend/01_html)
 - [ ] JavaScript
