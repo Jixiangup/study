@@ -1,12 +1,19 @@
 # 学习目标及安排
-- [ ] 大数据 - 已经开始
+- [ ] bigdata
 - [ ] Python
 - [ ] K8S
 - [ ] Swift
+- [ ] CSS & JavaScriptDOM
 - [ ] ....
 
 路还有很长，慢慢走。
 
-## 大数据
+## bigdata
 
 - [ ] Hadoop
+
+## frontend
+
+- [X] CSS
+- [X] HTML
+- [ ] JavaScript
