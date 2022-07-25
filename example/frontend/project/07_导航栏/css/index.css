@@ -1,0 +1,29 @@
+/* reset default style */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    width: 1600px;
+    text-align: center;
+    background-color: #808080;
+    height: 30px;
+    margin-top: 300px;
+}
+
+.nav ul li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: white;
+    line-height: 10px;
+}
+
+.nav ul li:hover {
+    background-color: #393737;
+    height: 30px;
+}
