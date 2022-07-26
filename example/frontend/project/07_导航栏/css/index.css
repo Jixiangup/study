@@ -5,25 +5,26 @@
 }
 
 .nav {
-    width: 1600px;
-    text-align: center;
-    background-color: #808080;
-    height: 30px;
-    margin-top: 300px;
+    height: 45px;
+    width: 1510px;
+    background-color: #e8e7e3;
+    margin: 100px auto;
 }
 
-.nav ul li {
-    display: inline-block;
-    margin-right: 30px;
+.nav li {
+    float: left;
+    list-style-type: none;
 }
 
-.nav ul li a {
+.nav li a {
     text-decoration: none;
-    color: white;
-    line-height: 10px;
+    line-height: 45px;
+    color: #888887;
+    display: block;
+    padding: 0 66px;
 }
 
-.nav ul li:hover {
-    background-color: #393737;
-    height: 30px;
+.nav li a:hover {
+    background-color: #3f3f3f;
+    color: #dcdbd7;
 }
