@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>浮动</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* resolve height collapse */
+        .clearfix::before,
+        .clearfix::after {
+            /* 既可以解决相邻元素之间的共享外边距的同时也可以转换块元素 */
+            display: table;
+            /* 开启BFA */
+            clear: both;
+            content: '';
+            /* 解决ie浏览器的兼容问题 */
+            height: 0;
+            overflow: hidden;
+            /* 隐藏content中的内容 */
+            visibility: hidden;
+        }
+
+        .box0 {
+            border: deeppink 10px solid;
+        }
+
+        .box1 {
+            background-color: pink;
+            float: left;
+            height: 1300px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="box0 clearfix">
+    <div class="box1"></div>
+    <div class="box2"></div>
+</div>
+</body>
+</html>

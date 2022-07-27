@@ -1,0 +1,36 @@
+/* reset default style */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 1000px;
+}
+
+.nav {
+    height: 45px;
+    width: 1510px;
+    background-color: #e8e7e3;
+    margin: 100px auto;
+    position: sticky;
+    top: 0;
+}
+
+.nav li {
+    float: left;
+    list-style-type: none;
+}
+
+.nav li a {
+    text-decoration: none;
+    line-height: 45px;
+    color: #888887;
+    display: block;
+    padding: 0 66px;
+}
+
+.nav li a:hover {
+    background-color: #3f3f3f;
+    color: #dcdbd7;
+}
