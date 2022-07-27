@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*解决高度塌陷*/
+.clearfix::before,
+.clearfix::after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.carouselRoot {
+    width: 976px;
+    height: 550px;
+    margin: 100px auto;
+}
+
+.carouselRoot > ul > li {
+    list-style-type: none;
+    /*绝对定位将所有图片放在一个位置*/
+    position: absolute;
+}
+
+/*被选中的元素通过这个index进行显示*/
+.carouselRoot > ul > li:nth-child(2) {
+    /*指定定位的元素显示层级的优先级 数值越大优先级越高*/
+    z-index: 1;
+}
+
+/* 轮播图的地步导航栏 */
+.activateTheContainer {
+    height: 100px;
+    width: 100%;
+    background-color: rgb(38, 31, 23);
+    position: relative;
+    bottom: 0;
+    top: 550px;
+}
+
+/* 图片文字介绍 */
+.introductionToCarousel {
+    color: white;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 22px;
+}
+
+/* 图片导航圆点的父元素 */
+.activateTheContainer > .activateListBox {
+    float: left;
+    margin-left: 20px;
+    margin-top: 70px;
+}
+
+/* 指定未被选中的图片导航圆点 */
+.activateTheContainer > .activateListBox a {
+    height: 5px;
+    width: 10px;
+    background-color: rgb(149, 147, 127);
+    border-radius: 10px;
+    float: left;
+    margin-right: 5px;
+}
+
+/* 指定备选中的图片导航圆点 */
+.activateTheContainer > .activateListBox a:hover ,
+.activateTheContainer > .activateListBox > .currentActiveBox {
+    height: 5px;
+    width: 50px;
+    background-color: white;
+    border-radius: 10px;
+    float: left;
+    margin-right: 5px;
+}
+
+.changeImage {
+    position: relative;
+    text-align: center;
+}
+
+/* 轮播图前后切换 */
+.changeImage > a {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    z-index: 9999;
+    background-color: rgb(144, 107, 92, .3);
+    border-radius: 10px;
+    color: #f3ecec;
+    top: 20px;
+    text-decoration: none;
+    line-height: 30px;
+}
+
+.changeImage > .pre {
+    right: 100px;
+}
+
+.changeImage > .next {
+    right: 60px;
+}
