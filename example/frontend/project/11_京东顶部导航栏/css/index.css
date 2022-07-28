@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* resolve height collapse */
+.clearfix::before,
+.clearfix::after {
+    display: table;
+    clear: both;
+    content: '';
+    /* 解决ie浏览器的兼容问题 */
+    height: 0;
+    overflow: hidden;
+    /* 隐藏content中的内容 */
+    visibility: hidden;
+}
+
+.root-nav {
+    width: 100%;
+    background-color: #e3e4e5;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.navbar {
+    width: 80%;
+    margin: 0 auto;
+    background-color: pink;
+}
+
+.navbar-left {
+    float: left;
+}
+
+.navbar .location-icon {
+    color: red;
+    margin-right: 3px;
+}
+
+.navbar .extra-item {
+    width: 200px;
+    height: 300px;
+    border: 1px palegoldenrod solid;
+    display: none;
+}
+
+.navbar .navbar-right ul {
+    float: right;
+}
+
+.navbar .navbar-right ul li {
+    float: left;
+    list-style-type: none;
+}
