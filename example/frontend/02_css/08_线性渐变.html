@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>渐变</title>
+    <style>
+        .box1 {
+            width: 200px;
+            height: 200px;
+            /* 
+                > 通过渐变可以设置一些复杂的背景颜色, 可以实现一个颜色想起他过渡的效果, 渐变是图片, 需要通过background-image来设置, 渐变可以同时指定多个颜色, 多个颜色默认情况下平均分布，同时也可以手动指定渐变的分布情况，需要注意的是如果指定了分布情况，那么指定的元素值就是单纯地颜色 不会出现任何渐变效果，当达到分布值之后才会开始渐变
+
+                ## 线性渐变
+                颜色沿着一条直线发生变化
+                ### 语法
+                linear-gradient({颜色} [分布像素], ...., {颜色} [分布像素])
+                > 注意空格分割
+                ### 例子
+                linear-gradient(red, ..., yellow)红色在开头，黄色在结尾，中间是过渡区域
+                ### 参数或备注
+                线性渐变的开头我们可以制定一个渐变的方向
+                - to left
+                - to right
+                - to bottom
+                - to topp
+                - ${number}deg deg表示度数(如九十度)
+                - ${number}turn turn表示圈 可以为小数
+
+                ## 可平铺线性渐变
+                作用于 `linear-gradient`类似
+                ### 语法
+                repeating-linear-gradient({颜色} [分布像素], ...., {颜色} [分布像素])
+
+
+                
+             */
+             background-image: repeating-linear-gradient(90deg, black 0px, yellow 50px);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+</body>
+</html>

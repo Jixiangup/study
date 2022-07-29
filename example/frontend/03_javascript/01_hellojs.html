@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>helloJs</title>
+
+</head>
+<body>
+    <button id="but">
+        提交
+    </button>
+ 
+    <div id="div1">111</div>
+    <script>
+        document.getElementById('but').onclick = function() {
+            document.getElementById('div1').innerHTML += '<a href="https://www.baidu.com">新的A标签&nbsp;</a>'
+        }
+    </script>
+</body>
+</html>

@@ -21,6 +21,7 @@
     background-color: #e3e4e5;
     line-height: 30px;
     font-size: 12px;
+    color: #999999;
 }
 
 .navbar {
@@ -35,14 +36,38 @@
 
 .navbar .location-icon {
     color: red;
-    margin-right: 3px;
+    /* margin-right: 3px; */
 }
 
 .navbar .extra-item {
     width: 200px;
     height: 300px;
-    border: 1px palegoldenrod solid;
+    border: 1px #cccccc solid;
+    box-shadow: 5px 5px 0.1 #cccccc ;
+    position: absolute;
     display: none;
+}
+
+.root-nav .navbar-left > div {
+    position: relative;
+    width: 50px;
+    text-align: center;
+    border: 1px transparent solid;
+    z-index: 9999;
+    
+}
+
+.root-nav .navbar-left > div:hover {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 0.2 #cccccc ;
+    border: 1px #cccccc solid;
+}
+
+.root-nav .navbar-left > div:hover .extra-item {
+    background-color: rgb(255, 255, 255);
+    border: 1px #cccccc transparent;
+    box-shadow: 5px 5px 0.2 #cccccc ;
+    display: block;
 }
 
 .navbar .navbar-right ul {
@@ -52,4 +77,22 @@
 .navbar .navbar-right ul li {
     float: left;
     list-style-type: none;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #999999;
+}
+
+.navbar .current-hover-nav-item,
+.navbar .navbar-right ul li:hover,
+.navbar .navbar-right ul li a:hover {
+    color: #e33333;
+}
+
+.root-nav .space {
+    height: 10px;
+    width: 2px;
+    background-color: #cccccc;
+    margin: 10px;
 }

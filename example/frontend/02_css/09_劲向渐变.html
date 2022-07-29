@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>劲向渐变</title>
+    <style>
+        .box1 {
+            width: 200px;
+            height: 200px;
+            /*
+                ## 劲向渐变
+                > 默认情况下劲向渐变的形状根据元素的形状计算的
+
+                > 正方形 -- 原型
+
+                > 长方形 -- 椭圆形
+
+                > 同时也可以手动指定劲向渐变的大小
+
+                ### 语法
+
+                background-image: radial-gradient([witdh] [height], pink, deeppink);
+
+                background-image: radial-gradient([circle / ellipse], pink, deeppink);
+
+                circle - 圆形
+                ellipse - 椭圆
+                
+             */
+
+            background-image: radial-gradient(pink, deeppink);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+</body>
+</html>
