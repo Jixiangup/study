@@ -1,0 +1,86 @@
+/* 导航部分 */
+.topbar {
+    background-color: #333333;
+    font-size: 12px;
+    line-height: 40px;
+}
+
+/* 指定导航栏中的每个元素之间的竖线间隔样式 */
+.topbar .line-space {
+    color: #424242;
+    font-size: 13px;
+    margin: 0 8px;
+}
+
+/* 指定导航栏中的每个a元素样式 */
+.topbar a {
+    text-decoration: none;
+    color: #b0b0b0;
+} 
+
+/* 指定导航栏中的所有li样式 */
+.topbar li {
+    list-style-type: none;
+}
+
+/* 指定所有li鼠标移入效果 */
+.topbar li a:hover {
+    color: #fff;
+}
+
+/* 服务列表容器 */
+.topbar .services {
+    float: left;
+}
+
+.topbar .services li {
+    float: left;
+}
+
+/* 购物车容器 */
+.topbar .shop-cart {
+    float: right;
+    margin-left: 25px;
+    background-color: #424242;
+    text-align: center;
+    position: relative;
+}
+
+.topbar .shop-cart:hover * {
+    color: #ff6700;
+}
+
+.topbar .shop-cart:hover > ul {
+    color: #ff6700;
+    background-color: #fff;
+    display: block;
+    box-shadow: 0 0 1px 2px #ededed;
+}
+
+
+.topbar .cart-item {
+    display: none;
+    position: absolute;
+    width: 397px;
+    height: 100px;
+    background-color: #ff6700;
+    right: 0;
+}
+
+.topbar .fa-cart-shopping {
+    color: #b0b0b0;
+}
+
+.topbar .shop-cart li {
+    width: 120px;
+}
+
+/* 用户信息容器 */
+.topbar .user-info {
+    float: right;
+}
+
+.topbar .user-info li {
+    float: left;
+}
+/* ********************************************顶部导航***********************************************8 */
