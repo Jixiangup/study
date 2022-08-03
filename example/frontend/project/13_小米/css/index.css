@@ -1,7 +1,7 @@
 /* 导航部分 */
 .topbar {
     background-color: #333333;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 40px;
 }
 
@@ -33,6 +33,43 @@
     float: left;
 }
 
+/* 下载app */
+.topbar .services .download-app {
+    position: relative;
+}
+
+.topbar .services .download-app-content {
+    position: absolute;
+    left: -50%;
+    top: 40px;
+    height: 148px;
+    width: 124px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.topbar .download-app-qrcode {
+    display: inline-block;
+    height: 148px;
+    width: 124px;
+    /* background-color: aqua; */
+    /* background: url(../images/download-app.png) 90px no-repeat center; */
+    background-image: url(../images/download-app.png);
+    background-size: 90px;
+    background-repeat: no-repeat;
+    /* background-position: center; */
+
+}
+
+.topbar .download-app-remark {
+    position: absolute;
+}
+
+.topbar .services .download-app-content span, .topbar .services .download-app span:hover {
+    color: black;
+}
+
+
+
 .topbar .services li {
     float: left;
 }
@@ -46,15 +83,20 @@
     position: relative;
 }
 
+.topbar .shop-cart .cart-title {
+    padding: 0 25px;
+}
+
 .topbar .shop-cart:hover * {
     color: #ff6700;
 }
 
 .topbar .shop-cart:hover > ul {
+/* .topbar .shop-cart > ul { */
     color: #ff6700;
     background-color: #fff;
     display: block;
-    box-shadow: 0 0 1px 2px #ededed;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 }
 
 
@@ -71,8 +113,8 @@
     color: #b0b0b0;
 }
 
-.topbar .shop-cart li {
-    width: 120px;
+.topbar .shop-cart .cart-item {
+    line-height: 100px;
 }
 
 /* 用户信息容器 */
