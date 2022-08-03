@@ -8,15 +8,34 @@
 
 </head>
 <body>
-    <button id="but">
-        提交
-    </button>
- 
-    <div id="div1">111</div>
     <script>
-        document.getElementById('but').onclick = function() {
-            document.getElementById('div1').innerHTML += '<a href="https://www.baidu.com">新的A标签&nbsp;</a>'
+        /* 等页面元素加载完之后在加载这段代码 */
+        window.onload = function() {
+            var count = 1
+            var current = document.getElementById('current')
+            current.value = count
+
+            var add = document.getElementById('add')
+
+
+            add.onclick = function() {
+                
+                current.value = ++count
+            }
+            var jian = document.getElementById('jian')
+
+            jian.onclick = function() {
+                
+                current.value = --count
+            }
+
+
+
         }
     </script>
+    当前值：<input id="current" type="text">
+    <input id="add" type="button" value="加一">
+    <input id="jian" type="button" value="减一">
+
 </body>
 </html>
