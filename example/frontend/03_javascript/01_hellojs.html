@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>helloJs</title>
+    <style>
+        .变颜色 {
 
+        }
+    </style>
 </head>
 <body>
     <script>
@@ -14,6 +18,20 @@
             var count = 1
             var current = document.getElementById('current')
             current.value = count
+
+            current.onmouseenter = function () {
+                current.value = ++count
+                current.classList.add("ggboy")
+            }
+
+            current.onmouseout = function () {
+                current.value = --count
+                current.classList.remove("ggboy")
+            }
+
+            // title
+
+
 
             var add = document.getElementById('add')
 
@@ -29,13 +47,54 @@
                 current.value = --count
             }
 
+            // 下面是class的逻辑 带s证明不止一个 是复数 有多个
+            var jiaForClasses = document.getElementsByClassName('add');
+            // [1, 2, 3, 4, 5]
+            for (let i = 0; i < jiaForClasses.length; i++) {
+                var currentJiaForClass = jiaForClasses[i];
+                currentJiaForClass.onclick = function () {
+                    current.value = ++count
+                }
+            }
+
+            var jianForClasses = document.getElementsByClassName('jian');
+            // [1, 2, 3, 4, 5]
+            for (let i = 0; i < jianForClasses.length; i++) {
+                var currentjianForClass = jianForClasses[i];
+                currentjianForClass.onclick = function () {
+                    current.value = --count
+                }
+            }
+
+            var elementsByName = document.getElementsByName('12312');
+            for (const elementsByNameElement of elementsByName) {
+                console.log('elementsByNameElement', elementsByNameElement)
+            }
+
+            for (let i = 0; i < elementsByName.length; i++) {
+                var elementsByNameElement = elementsByName[i];
+                elementsByNameElement.onclick = function () {
+                    current.value = --count
+                }
+            }
 
 
         }
     </script>
-    当前值：<input id="current" type="text">
-    <input id="add" type="button" value="加一">
-    <input id="jian" type="button" value="减一">
+    当前值：<label for="current"></label><input id="current" type="text">
+    <input id="add" type="button" value="加一(id)">
+    <input id="jian" type="button" value="减一(id)">
+
+    <input name="12312" class="add" type="button" value="加一(class1)">
+    <input class="add" type="button" value="加一(class2)">
+    <input class="add" type="button" value="加一(class3)">
+    <input class="add" type="button" value="加一(class4)">
+    <input class="add" type="button" value="加一(class5)">
+    <input class="add" type="button" value="加一(class6)">
+    <input class="add" type="button" value="加一(class7)">
+    <input class="add" type="button" value="加一(class8)">
+    <input class="add" type="button" value="加一(class9)">
+    <input class="jian" type="button" value="减一(class)">
 
 </body>
 </html>
