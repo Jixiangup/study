@@ -38,34 +38,65 @@
     position: relative;
 }
 
+/* 下载app的小三角 */
+.topbar .services .download-app:hover .download-app-nav::after {
+    display: block;
+    position: absolute;
+    overflow: auto;
+    bottom: 0;
+    left: 18px;
+    content: '';
+    width: 0px;
+    height: 0px;
+    /* background-color: aquamarine; */
+    border-right: solid 10px transparent;
+    border-left: solid 10px transparent;
+    border-top: solid 10px transparent;
+    border-bottom: solid 10px #fff;
+}
+
+/* 下载app框 */
 .topbar .services .download-app-content {
     position: absolute;
-    left: -50%;
+    left: -60%;
     top: 40px;
-    height: 148px;
+    /* height: 148px; */
+    height: 0px;
+    overflow: hidden;
     width: 124px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 }
 
+/* 下载的二维码过渡展开效果 */
+.topbar .services .download-app:hover .download-app-content {
+    transition: height 0.3s;
+    height: 148px;
+}
+
+/* 下载app二维码 */
 .topbar .download-app-qrcode {
     display: inline-block;
     height: 148px;
     width: 124px;
-    /* background-color: aqua; */
     /* background: url(../images/download-app.png) 90px no-repeat center; */
     background-image: url(../images/download-app.png);
     background-size: 90px;
     background-repeat: no-repeat;
-    /* background-position: center; */
+    background-position: center;
+    margin-top: -10px;
 
 }
 
+/* 下载app文字 */
 .topbar .download-app-remark {
-    position: absolute;
+    position: relative;
+    bottom: 30px;
+    left: 20px;
+    line-height: 1;
 }
 
-.topbar .services .download-app-content span, .topbar .services .download-app span:hover {
-    color: black;
+.topbar .download-app:hover .download-app-content {
+    color: #000000;
 }
 
 
@@ -126,3 +157,121 @@
     float: left;
 }
 /* ********************************************顶部导航***********************************************8 */
+
+/* 头部外部容器大小 */
+.header-wrapper {
+    width: 100%;
+    height: 100px;
+    /* background-color: #bfa; */
+    font-size: 16px;
+    /* 如果切换页面就不能给他了 */
+    /* border-bottom: #dbdbdc 1px solid; */
+}
+
+/* 清楚a标签样式 */
+.header-wrapper a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* 去除li的默认样式 */
+.header-wrapper li {
+    list-style-type: none;
+}
+
+/* 头部logo所在容器 */
+.header-wrapper .header-left, .header-wrapper .header-center {
+    float: left;
+}
+
+/* 头部logo */
+.header-wrapper .logo {
+    display: block;
+    width: 56px;
+    height: 56px;
+    background-image: url(../images/logo-mi.png);
+    background-size: 56px;
+    margin: 22px 0;
+    float: left;
+}
+
+/* 头部中间内容容器 */
+.header-wrapper .header-center li {
+    float: left;
+    line-height: 100px;
+    padding: 0 10px;
+}
+
+.header-wrapper .header-center li a {
+    display: block;
+}
+
+.header-wrapper .header-center li:not(:first-child):hover a {
+    color: #ff6700;
+}
+
+.header-wrapper .header-center li:first-of-type {
+    margin-left: 50px;
+}
+
+/* 隐藏第一个内容 */
+.header-wrapper .header-center li:first-child {
+    visibility: hidden;
+}
+
+/* 头部下拉框 */
+.header-wrapper .dropdown {
+    width: 100%;
+    /* background-color: deeppink; */
+    position: absolute;
+    top: 140px;
+    left: 0;
+    height: 0px;
+}
+
+.header-wrapper .header-center .has-dropdown:hover ~ div:last-of-type, .header-wrapper .dropdown:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+    border: #dcdbdc 1px solid;
+    height: 230px;
+    transition: height 0.3s;
+}
+
+/* 头部搜索容器 */
+.header-wrapper .header-right {
+    float: right;
+    margin: 22px auto;
+}
+
+.header-wrapper .header-right li *{
+    float: left;
+}
+
+/* 搜索框 */
+.header-wrapper .search-input {
+    width: 245px;
+    height: 50px;
+    border: #e0e0e0 solid 1px;
+    border-right: transparent;
+}
+
+.header-wrapper .search-input:focus {
+    border: #ff6700 solid 1px;
+    border-right: transparent;
+    outline: none;
+}
+
+.header-wrapper .search-input:focus + a > .fa-magnifying-glass {
+    border: #ff6700 solid 1px;
+    border-left: transparent;
+}
+
+/* 搜索按钮 */
+.header-wrapper .fa-magnifying-glass {
+    width: 52px;
+    height: 50px;
+    border: #e0e0e0 solid 1px;
+    border-left: transparent;
+    text-align: center;
+    line-height: 52px;
+    background-color: #fff;
+}

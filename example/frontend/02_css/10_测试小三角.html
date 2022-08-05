@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box::before {
+            position: relative;
+            content: '';
+            display: block;
+            width: 0px;
+            height: 0px;
+            border-right: solid 3px transparent;
+            border-left: solid 3px transparent;
+            border-top: solid 3px transparent;
+            border-bottom: solid 3px pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+</html>
