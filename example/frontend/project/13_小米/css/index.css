@@ -60,11 +60,12 @@
     position: absolute;
     left: -60%;
     top: 40px;
-    /* height: 148px; */
+    background-color: #fff;
     height: 0px;
     overflow: hidden;
     width: 124px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    z-index: 9999999;
 }
 
 /* 下载的二维码过渡展开效果 */
@@ -227,6 +228,7 @@
     top: 140px;
     left: 0;
     height: 0px;
+    z-index: 999;
 }
 
 .header-wrapper .header-center .has-dropdown:hover ~ div:last-of-type, .header-wrapper .dropdown:hover {
@@ -274,4 +276,121 @@
     text-align: center;
     line-height: 52px;
     background-color: #fff;
+}
+
+/* --------中间内容区-------- */
+.home-wrapper {
+    height: 460px;
+}
+/* 左侧导航栏 */
+.home-wrapper li {
+    list-style-type: none;
+}
+
+.home-wrapper a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+/* 左侧目录 */
+.home-wrapper .category {
+    background-color: rgba(63, 61, 61, .7);
+    float: left;
+    width: 230px;
+    height: 460px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 999;
+}
+
+.home-wrapper .category li a {
+    margin: 0 25px;
+}
+.home-wrapper .category li:first-of-type {
+    margin-top: 20px;
+}
+
+.home-wrapper .category li a {
+    display: block;
+    line-height: 42px;
+}
+
+.home-wrapper .category li a i {
+    line-height: 42px;
+}
+
+.home-wrapper .category li:hover {
+    background-color: #ff6700;
+}
+
+.home-wrapper .category i {
+    float: right;
+}
+
+/* 右侧轮播图 */
+.home-wrapper .carousel {
+    position: relative;
+    background-color: #ff6700;
+    width: 100%;
+    height: 460px;
+    float: left;
+}
+
+.home-wrapper .carousel img {
+    width: 100%;
+    height: 460px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.home-wrapper .carousel .circle-list {
+    position: absolute;
+    right: 15px;
+    bottom: 25px;
+    z-index: 99999;
+}
+
+.home-wrapper .carousel .circle {
+    display: block;
+    width: 5px;
+    height: 5px;
+    float: left;
+    margin-right: 8px;
+    border: 2px solid #484b4f;
+    border-radius: 5px;
+}
+
+.home-wrapper .carousel .circle:hover,
+.home-wrapper .carousel .active {
+    background-color: #767a81;
+}
+
+.home-wrapper .carousel .left, .home-wrapper .carousel .right {
+    position: absolute;
+    top: 40%;
+    z-index: 9999;
+}
+
+.home-wrapper .carousel .left a, .home-wrapper .carousel .right a {
+    font-size: 30px;
+    color: #a3a3a4;
+    display: block;
+    width: 41px;
+    height: 69px;
+    line-height: 69px;
+    text-align: center;
+}
+
+.home-wrapper .carousel .right {
+    right: 10px;
+}
+.home-wrapper .carousel .left {
+    left: 240px;
+}
+
+.home-wrapper .carousel .left a:hover, .home-wrapper .carousel .right a:hover {
+    color: #fff;
+    background-color: #22262f;
 }
