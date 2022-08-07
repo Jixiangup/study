@@ -1,0 +1,17 @@
+body {
+    width: 100px;
+    height: 100px;
+    div {
+        width: 50px;
+        height: 50px;
+    }
+    // & 用于获取当前元素声明块的夫元素（声明块的元素）
+    &:hover {
+        background-color: aliceblue;
+    }
+    div {
+        &:hover {
+            background-color: deeppink;
+        }
+    }
+}

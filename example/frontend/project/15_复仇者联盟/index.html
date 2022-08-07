@@ -5,8 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .cube {
+            perspective: 800px;
+        }
+
+        .cube {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+        }
+
+        .cube > div {
+            width: 200px;
+            height: 200px;
+            /* 为元素设置透明效果 */
+            opacity: 0.7;
+            position: absolute;
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        .box1 {
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .box2 {
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .box3 {
+            transform: rotateY(-180deg) translateZ(100px);
+        }
+
+        .box4 {
+            transform: rotateY(-180deg) translateZ(100px);
+        }
+    
+    </style>
 </head>
 <body>
-    
+    <div class="cube">
+        <div class="box1">     
+            <img src="../public/images/haro/1.jpg" alt="">
+        </div>
+
+        <div class="box2">     
+            <img src="../public/images/haro/2.jpg" alt="">
+        </div>
+
+        <div class="box3">     
+            <img src="../public/images/haro/3.jpg" alt="">
+        </div>
+
+        <div class="box4">     
+            <img src="../public/images/haro/3.jpg" alt="">
+        </div>
+    </div>
 </body>
 </html>
