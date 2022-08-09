@@ -17,24 +17,32 @@ body {
     align-items: center;
     flex: auto;
 
-    #root {
 
+    #root {
+        display: flex;
+        position: relative;
         #progress {
-            width: 400px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
             height: 3px;
             background-color: @unactiveColor;
+            top: 45%;
         }
 
-        display: flex;
+
         .step-wrapper {
+            position: relative;
             width: 100px;
+            display: flex;
             // background-color: pink;
             .step {
                 width: 25px;
                 height: 25px;
                 border-radius: 50%;
                 border: 3px solid @unactiveColor;
-                margin: 0 auto;
+                // margin: 0 auto;
                 text-align: center;
                 line-height: 25px;
                 background-color: #fff;
