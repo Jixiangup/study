@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*设置图片排版*/
+.item {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 5px 0 10px 5px;
+}
+
+/*添加鼠标移入样式*/
+.item:hover {
+    width: 160px;
+    height: 160px;
+}

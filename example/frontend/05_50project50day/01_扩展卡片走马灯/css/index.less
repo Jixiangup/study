@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.image-style {
+    // 图片不重复
+    background-repeat: no-repeat;
+    // 全部展示图片
+    background-size: cover;
+    // 图片居中
+    background-position: center;
+    height: 100%;
+    // 指定圆角
+    border-radius: 50px;
+    margin: 0 10px;
+    cursor: pointer;
+    // position: relative;
+}
+
+
+
+body {
+    display: flex;
+    // 设置弹性容器中的弹性元素垂直居中
+    align-items: center;
+    // 设置弹性容器中的弹性元素水平居中
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+    
+#root {
+
+
+
+    .card {
+        // 设置过渡效果
+        transition: flex 0.7s ease-in;
+        flex: 0.5;
+        position: relative;
+        h3 {
+            // 默认隐藏文字
+            opacity: 0;
+            // transition: opacity 0.7s ease-in;
+        }
+        // 只有包含该类的属性才会显示
+        .show-remark {
+            position: absolute;
+            bottom: 20px;
+            left: 35px;
+            color: #fff;
+            opacity: 1;
+            transition: opacity 0.7s ease-in;
+        }
+    }
+
+    display: flex;
+    // 指定弹性容器中的弹性元素之间的空格分配方式为环绕
+    justify-content: space-around;
+    height: 80vh;
+    width: 90vw;
+
+    .active {
+        flex: 5;
+    }
+
+    .img1:extend(.image-style) {
+        background-image: url(../images/1.jpeg);
+    }
+    
+    .img2:extend(.image-style) {
+        background-image: url(../images/2.jpeg);
+    }
+    
+    .img3:extend(.image-style) {
+        background-image: url(../images/3.jpeg);
+    }
+    
+    .img4:extend(.image-style) {
+        background-image: url(../images/4.jpeg);
+    }
+    
+    .img5:extend(.image-style) {
+        background-image: url(../images/5.jpeg);
+    }
+}

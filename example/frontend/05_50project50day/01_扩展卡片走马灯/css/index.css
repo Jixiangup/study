@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.image-style,
+#root .img1,
+#root .img2,
+#root .img3,
+#root .img4,
+#root .img5 {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  border-radius: 50px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+#root {
+  display: flex;
+  justify-content: space-around;
+  height: 80vh;
+  width: 90vw;
+}
+#root .card {
+  transition: flex 0.7s ease-in;
+  flex: 0.5;
+  position: relative;
+}
+#root .card h3 {
+  opacity: 0;
+}
+#root .card .show-remark {
+  position: absolute;
+  bottom: 20px;
+  left: 35px;
+  color: #fff;
+  opacity: 1;
+  transition: opacity 0.7s ease-in;
+}
+#root .active {
+  flex: 5;
+}
+#root .img1 {
+  background-image: url(../images/1.jpeg);
+}
+#root .img2 {
+  background-image: url(../images/2.jpeg);
+}
+#root .img3 {
+  background-image: url(../images/3.jpeg);
+}
+#root .img4 {
+  background-image: url(../images/4.jpeg);
+}
+#root .img5 {
+  background-image: url(../images/5.jpeg);
+}
