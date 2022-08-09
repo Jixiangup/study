@@ -1,0 +1,49 @@
+@unactiveColor: #dcdcdc;
+@activeColor: #2e8dd6;
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body {
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    // 水平居中
+    justify-content: space-around;
+    // 垂直居中
+    align-items: center;
+    flex: auto;
+
+    #root {
+
+        #progress {
+            width: 400px;
+            height: 3px;
+            background-color: @unactiveColor;
+        }
+
+        display: flex;
+        .step-wrapper {
+            width: 100px;
+            // background-color: pink;
+            .step {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                border: 3px solid @unactiveColor;
+                margin: 0 auto;
+                text-align: center;
+                line-height: 25px;
+                background-color: #fff;
+                color: @unactiveColor;
+            }
+
+            .active {
+                background-color: @activeColor;
+            }
+        } 
+    }
+}
