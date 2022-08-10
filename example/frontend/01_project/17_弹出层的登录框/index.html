@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹出层的登录框</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/index.js"></script>
+</head>
+<body>
+
+    <div class="root">
+        <h1><a href="javascript:;" id="show">点击弹出登录框</a></h1>
+
+        <!-- 登录框容器 -->
+        <div class="login-wrapper">
+
+            <!-- 登录框 -->
+            <form action="javascript:;" method="post">
+                <!-- 关闭按钮 -->
+                <div id="close">关闭</div>
+                <h3 class="title">登录会员</h3>
+                <div>
+                    <label for="username">用户名</label>
+                    <input id="username" type="text" name="username" placeholder="请输入用户名">
+                </div>
+
+                <div>
+                    <label for="password">密码</label>
+                    <input id="password" type="text" name="password" placeholder="请输入登录密码">
+                </div>
+
+                <input type="submit" id="submit" value="登录">
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

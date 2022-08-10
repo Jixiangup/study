@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.input {
+    width: 60%;
+    height: 40px;
+    width: 70%;
+    border: rgb(224, 219, 219) 1px solid;
+}
+
+.show {
+    width: 100%;
+    height: 100vh;
+    background-color: #808080;
+}
+body {
+    h1 {
+        text-align: center;
+        #show {
+            text-decoration: none;
+            color: #000;
+        }
+    }
+
+    // .show;
+ 
+    .login-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        display: none;
+        form {
+            #close {
+                justify-content: center;
+                align-items: center;
+                // border: #000 1px solid;
+                height: 55px;
+                width: 55px;
+                text-align: center;
+                line-height: 35px;
+                border-radius: 50%;
+                position: absolute;
+                top: -20px;
+                right: -20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+                cursor: pointer;
+            }
+
+            position: relative;
+            .title {
+                padding: 20px 0;
+            }
+            margin: 0 auto;
+            text-align: center;
+            flex: 1 0 ;
+            width: 580px;
+            height: 260px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            div {
+                line-height: 40px;
+                display: flex;
+                margin-bottom: 20px;
+                input {
+                    .input;
+                }
+                label {
+                    width: 20%;
+                    text-align: right;
+                }
+            }
+    
+            #submit {
+                .input;
+                background-color: #fff;
+                width: 50%;
+                cursor: pointer;
+            }
+        }
+    }
+
+
+
+    label::after {
+        content: ':';
+        margin-right: 10px;
+    }
+
+
+}
