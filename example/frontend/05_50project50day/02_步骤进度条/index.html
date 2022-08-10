@@ -12,28 +12,17 @@
 
 <body>
     <div id="root">
-        <!-- 链接步骤的进度条 -->
-        <div id="progress"></div>
-
         <!-- 步骤 -->
         <div class="step-wrapper">
-            <div class="step"></div>
+            <!-- 链接步骤的进度条 -->
+            <div id="progress"></div>
+            <div class="step active">1</div>
+            <div class="step active">2</div>
+            <div class="step active">3</div>
+            <div class="step">4</div>
         </div>
-
-        <!-- 步骤 -->
-        <div class="step-wrapper">
-            <div class="step"></div>
-        </div>
-
-        <!-- 步骤 -->
-        <div class="step-wrapper">
-            <div class="step"></div>
-        </div>
-
-        <!-- 步骤 -->
-        <div class="step-wrapper">
-            <div class="step"></div>
-        </div>
+        <button class="operate" id="prev" disabled>Prev</button>
+        <button class="operate" id="next">Next</button>
     </div>
 </body>
 

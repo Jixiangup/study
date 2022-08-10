@@ -1,5 +1,8 @@
-@unactiveColor: #dcdcdc;
-@activeColor: #2e8dd6;
+/* 参数预设 */
+// 主题颜色
+@disabled-color: #dbdbdd;
+@theme-color: #3498db;
+// @theme-color: pink;
 
 * {
     margin: 0;
@@ -8,50 +11,84 @@
 }
 
 body {
-    height: 90vh;
-    width: 100vw;
     display: flex;
-    // 水平居中
-    justify-content: space-around;
-    // 垂直居中
+    height: 100vh;
+    justify-content: space-evenly;
     align-items: center;
-    flex: auto;
-
+    overflow: hidden;
 
     #root {
-        display: flex;
-        position: relative;
-        #progress {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 300px;
-            height: 3px;
-            background-color: @unactiveColor;
-            top: 45%;
+        
+        // 步骤外部容器
+        .step-wrapper {
+            width: 320px;
+            display: flex;
+            margin: 30px;
+
+            // 设置后面的进度条
+            &:first-child:before {
+                content: '';
+                display: block;
+                width: 240px;
+                height: 3px;
+                background-color: @disabled-color;
+                position: absolute;
+                left: 1px;
+                top: 45%;
+            }
+
+            .step {
+                width: 20px;
+                height: 20px;
+                position: relative;
+                z-index: 999;
+                margin-right: 50px;
+                border: 3px @disabled-color solid;
+                border-radius: 50%;
+                background-color: #fff;
+                text-align: center;
+            }
+            position: relative;
+
+            // 完成的进度条
+            #progress {
+                display: block;
+                background-color: @theme-color;
+                // 通过宽度确定当前是多少个被选中的
+                // width: 25%;
+                height: 3px;
+                position: absolute;
+                left: 1px;
+                top: 45%;
+                z-index: 100;
+                transition: all 0.3s ease-in;
+            }
+
+            // 完成的进度号
+            .active {
+                border: 3px @theme-color solid;
+                transition: all 0.5s ease-in;
+            }
+
+            
         }
 
-
-        .step-wrapper {
+        // 设置按钮样式
+        .operate {
             position: relative;
-            width: 100px;
-            display: flex;
-            // background-color: pink;
-            .step {
-                width: 25px;
-                height: 25px;
-                border-radius: 50%;
-                border: 3px solid @unactiveColor;
-                // margin: 0 auto;
-                text-align: center;
-                line-height: 25px;
-                background-color: #fff;
-                color: @unactiveColor;
-            }
+            background-color: @theme-color;
+            width: 6vw;
+            height: 6.5vh;
+            margin: 5px;
+            border: none;
+            border-radius: 7px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-            .active {
-                background-color: @activeColor;
-            }
-        } 
+        .operate:disabled {
+            background-color: @disabled-color;
+            cursor: not-allowed;
+        }
     }
 }
