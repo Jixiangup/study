@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #2d2d2d;
+}
+.show {
+  transform: rotate(-20deg);
+}
+.navigation-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding-left: 30px;
+}
+.navigation-container a {
+  font-size: 16px;
+}
+.navigation-container a i {
+  padding: 10px;
+}
+.navigation-container li {
+  text-transform: uppercase;
+  margin: 40px 0;
+}
+.navigation-container li a {
+  color: #fff;
+  text-decoration: none;
+}
+.navigation-container li:nth-child(2) {
+  margin-left: 15px;
+}
+.navigation-container li:nth-child(3) {
+  margin-left: 30px;
+  padding-bottom: 30px;
+}
+#page-change {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: #ff6e6e;
+  z-index: 111;
+  border-radius: 50%;
+  left: -100px;
+  top: -100px;
+  align-items: flex-end;
+  flex-direction: column;
+  display: flex;
+  transition: transform 0.7s ease-in;
+  transform: rotate(0deg);
+}
+#page-change button {
+  width: 50%;
+  height: 50%;
+  background-color: transparent;
+  border: 0 transparent solid;
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  transform: none;
+}
+#root {
+  padding: 50px;
+  background-color: #fff;
+  position: relative;
+  transition: transform 0.7s ease-in;
+  transform-origin: top left;
+}
+#root .home-container {
+  width: 50%;
+  padding: 50px;
+  margin: 0 auto;
+  position: relative;
+}
+#root .home-container img {
+  width: 100%;
+}
