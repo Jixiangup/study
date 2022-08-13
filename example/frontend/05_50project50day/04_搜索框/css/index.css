@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+body {
+  background-color: #795cf5;
+}
+body #root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+body #root.active #search {
+  width: 200px;
+  padding-left: 10px;
+}
+body #root form {
+  display: flex;
+}
+body #root form #search {
+  width: 0;
+  height: 50px;
+  border: 0;
+  transition: width 0.3s ease;
+  font-size: 18px;
+  outline: none;
+}
+body #root form #go-search {
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  border: 0;
+  cursor: pointer;
+  font-size: 24px;
+}
+/*# sourceMappingURL=index.css.map */

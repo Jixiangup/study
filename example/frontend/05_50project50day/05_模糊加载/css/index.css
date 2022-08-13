@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body #bg {
+  height: 100vh;
+  width: 100vw;
+  background: url('https://images.unsplash.com/photo-1576161787924-01bb08dad4a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2104&q=80') no-repeat center center / cover;
+  filter: blur(1px);
+}
+body #loading-text {
+  position: absolute;
+  font-size: 50px;
+  width: 15vw;
+  height: 10vh;
+  text-align: center;
+  color: #ffffff;
+}
+/*# sourceMappingURL=index.css.map */
