@@ -2,6 +2,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const pageChange = document.getElementById('page-change');
     const root = document.getElementById('root');
     const buts = document.getElementsByTagName('button');
+    const navigationContainer = document.querySelector('.navigation-container');
     let show = root.classList.contains('show');
 
     const showOrClose = () => {
@@ -13,6 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
             for (const but of buts) {
                 but.style.transform = 'rotate(-90deg)'
             }
+            navigationContainer.style.left = 0
         } else {
             pageChange.classList.remove('open')
             root.classList.remove('show')
@@ -20,6 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
             for (const but of buts) {
                 but.style.transform = 'rotate(0deg)'
             }
+            navigationContainer.style.left = '-200px'
         }   
     }
 
