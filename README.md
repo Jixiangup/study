@@ -3,7 +3,7 @@
 - [ ] Python
 - [ ] K8S
 - [ ] Swift
-- [ ] CSS & JavaScriptDOM
+- [X] CSS & JavaScriptDOM
 - [ ] ....
 
 路还有很长，慢慢走。
@@ -16,4 +16,6 @@
 
 - [X] [CSS](./note/09_frontend/03_css)
 - [X] [HTML](./note/09_frontend/01_html)
-- [ ] JavaScript
+- [X] JavaScript
+- [ ] [50project50days](./example/frontend/05_50project50day/)
+- [ ] NodeJs
