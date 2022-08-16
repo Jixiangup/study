@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body .card:nth-of-type(odd) {
+  transform: translateX(-400%);
+}
+body .card:nth-of-type(even) {
+  transform: translateX(400%);
+}
+body #card-container {
+  display: flex;
+  flex-flow: column;
+  background-color: #ecead1;
+  align-items: center;
+  flex: auto;
+  overflow: hidden;
+}
+body #card-container .card {
+  position: relative;
+  background-color: #3d77ab;
+  height: 200px;
+  width: 400px;
+  color: #ffffff;
+  margin: 10px;
+  display: table;
+  font-size: 32px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+body #card-container .card h2 {
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+body #card-container .show {
+  transform: translateX(0);
+}

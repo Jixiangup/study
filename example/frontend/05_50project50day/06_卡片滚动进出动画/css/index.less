@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    // 把该项目放出去之后可以让显示的css样式优先级更高
+    .card:nth-of-type(odd) {
+        transform: translateX(-400%);
+    }
+    .card:nth-of-type(even) {
+        transform: translateX(400%);
+    }
+    #card-container {
+        display: flex;
+        // 竖向排列
+        flex-flow: column;
+        // width: 100%;
+        // height: 100vh;
+        background-color: #ecead1;
+        // 因为变成竖向排列了 所以主轴和辅轴也会随着一起变 所以这个位置居中应该是用辅轴居中
+        align-items: center;
+        flex: auto;
+        overflow: hidden;
+        .card {
+            position: relative;
+            background-color: #3d77ab;
+            height: 200px;
+            width: 400px;
+            color: #ffffff;
+            margin: 10px;
+            display: table;
+            font-size: 32px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .6);
+            transition: all 0.3s ease;
+
+
+            h2 {
+                text-align: center;
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+
+        .show {
+            transform: translateX(0);
+        }
+    }
+}
