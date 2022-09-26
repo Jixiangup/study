@@ -2,3 +2,12 @@
 # 让编译器不要报错
 class EmtpyClass:
     pass
+
+# 以下是一个死循环
+# while True:
+#     pass
+
+def initlong(*args):
+    pass
+
+initlong(1)
