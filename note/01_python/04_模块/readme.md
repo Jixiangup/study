@@ -54,3 +54,5 @@ import fibo
 ## [模块详解](./01_%E6%A8%A1%E5%9D%97%E8%AF%A6%E8%A7%A3/readme.md)
 
 ## [标准模块](./02_%E6%A0%87%E5%87%86%E6%A8%A1%E5%9D%97/readme.md)
+
+## [dir()](./03_dir()%E5%87%BD%E6%95%B0/readme.md)函数
