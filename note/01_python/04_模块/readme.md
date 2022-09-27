@@ -52,3 +52,5 @@ import fibo
 这不会将`fibo` 直接定义在当前命名空间中的函数的名称添加到当前[命名空间](https://docs.python.org/zh-cn/3/glossary.html#term-namespace)中（有关详细信息，请参阅Python [作用域和命名空间](https://docs.python.org/zh-cn/3/tutorial/classes.html#tut-scopes)）；它只在`fibo`那里添加模块名称。使用模块名称，您可以访问功能。
 
 ## [模块详解](./01_%E6%A8%A1%E5%9D%97%E8%AF%A6%E8%A7%A3/readme.md)
+
+## [标准模块](./02_%E6%A0%87%E5%87%86%E6%A8%A1%E5%9D%97/readme.md)
