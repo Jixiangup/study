@@ -1,6 +1,6 @@
 # 学习目标及安排
 - [ ] bigdata
-- [ ] Python
+- [ ] [Python](./note/01_python)
 - [ ] K8S
 - [ ] Swift
 - [X] CSS & JavaScriptDOM
