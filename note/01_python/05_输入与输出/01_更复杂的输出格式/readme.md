@@ -57,4 +57,4 @@ repr((x, y, ('spam', 'eggs'))) # (32.5, 40000, ('spam', 'eggs'))
 
 ## [格式化字符串字面值](./01_%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%97%E9%9D%A2%E5%80%BC)
 
-## [字符串format()方法](./02_%E5%AD%97%E7%AC%A6%E4%B8%B2format()%E6%96%B9%E6%B3%95/)
+## [字符串format()方法](./02_%E5%AD%97%E7%AC%A6%E4%B8%B2format%E6%96%B9%E6%B3%95/)
