@@ -12,7 +12,7 @@ readme_file = open('readme.md', 'r+', encoding='utf-8')
 
 在文本模式下读取文件时，默认吧平台特定的行结束符（Unix上为`\n`，Windows上为`\r\n`转换为`\n`。在文本模式下写入数据时，默认吧`\n`转换回平台特定结束符。这种操作方式在后台修改文件数据对文本文件来说没有问题，但会破坏`JPEG`或`EXE`等二进制文件中的数据。注意，在读写此类文件时，一定要使用二进制模式。
 
-在处理文件对象时，最好使用[with](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#with)关键字。优点是，子句体结束后，文件会正确关闭，即便触发异常也可以。而且使用with相比等效的`[try](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#try)-[finally](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#finally)`
+在处理文件对象时，最好使用[with](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#with)关键字。优点是，子句体结束后，文件会正确关闭，即便触发异常也可以。而且使用with相比等效的[try](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#try)-[finally](https://docs.python.org/zh-cn/3/reference/compound_stmts.html#finally)
 
 ```python
 readme_file = open('/Users/bnyte/workspaces/tome/backend/study/note/01_python/05_输入与输出/02_读写文件/readme.md', 'r+', encoding='utf-8')
