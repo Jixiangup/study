@@ -1,1 +1,1 @@
-# 我将转换学习仓库存储地址，数据也会随之慢慢的迁移到 [blog存储库](https://github.com/bnyte.github.io)
+# 我将转换学习仓库存储地址，数据也会随之慢慢的迁移到 [blog存储库](https://github.com/bnyte/bnyte.github.io)
