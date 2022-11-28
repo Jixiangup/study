@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="navbar">
+    <block>
+      <view class="header">
+        <navbar></navbar>
+        <navbar></navbar>
+        <navbar></navbar>
+        <navbar></navbar>
+      </view>
+    </block>
+  </view>
+</view>
