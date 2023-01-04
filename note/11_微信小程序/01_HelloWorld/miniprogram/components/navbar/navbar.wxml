@@ -1,0 +1,9 @@
+<!--components/navbar/navbar/index.wxml-->
+<view class="container">
+    <block>
+        <view class="author">
+            <cover-image class="avatar" src="https://blogimg.bytestroll.com/avatar/bnyte.jpg" />
+            <text class="author-name">Bnyte</text>
+        </view>
+    </block>
+</view>
